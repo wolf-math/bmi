@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { IonApp, IonHeader, IonContent, IonToolbar, IonTitle, IonGrid, IonRow, IonCol, IonItem, IonLabel, IonInput, IonButton, IonIcon } from '@ionic/react';
+import React, { useRef, useState } from 'react';
+import { IonApp, IonHeader, IonContent, IonToolbar, IonTitle, IonGrid, IonRow, IonCol, IonItem, IonLabel, IonInput, IonButton, IonIcon, IonCard, IonCardContent } from '@ionic/react';
 import {calculatorOutline, refreshOutline} from 'ionicons/icons';
 
 /* Core CSS required for Ionic components to work properly */
@@ -22,6 +22,8 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 
 const App: React.FC = () => {
+  const [ calculatedBmi, setCalculatedBmi ] = useState<number>();
+
   const weightInputRef = useRef<HTMLIonInputElement>(null);
   const heightInputRef = useRef<HTMLIonInputElement>(null);
 
@@ -35,12 +37,13 @@ const App: React.FC = () => {
     
     const bmi = +enteredWeight / (+enteredHeight * +enteredHeight);
 
-    console.log(bmi);
+    setCalculatedBmi(bmi);
   };
 
   const resetInputs = () => {
     weightInputRef.current!.value = '';
     heightInputRef.current!.value = '';
+    setCalculatedBmi(0);
   };
 
   return(
@@ -84,11 +87,15 @@ const App: React.FC = () => {
             </IonButton>
           </IonCol>
         </IonRow>
-        <IonRow>
+        {calculatedBmi && (<IonRow>
           <IonCol>
-
+            <IonCard>
+              <IonCardContent>
+                <h2>{calculatedBmi}</h2>
+              </IonCardContent>
+            </IonCard>
           </IonCol>
-        </IonRow>
+        </IonRow>)}
       </IonGrid>
     </IonContent>
   </IonApp>
