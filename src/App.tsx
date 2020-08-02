@@ -1,6 +1,6 @@
 import React from 'react';
 import { IonApp, IonHeader, IonContent, IonToolbar, IonTitle, IonGrid, IonRow, IonCol, IonItem, IonLabel, IonInput, IonButton, IonIcon } from '@ionic/react';
-
+import {calculatorOutline, refreshOutline} from 'ionicons/icons';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -49,17 +49,22 @@ const App: React.FC = () => (
           </IonCol>
         </IonRow>
         <IonRow>
-          <IonCol>
+          <IonCol className="ion-text-left">
             <IonButton>
-              <IonIcon slot="start" name="calculator-outline" />
+              <IonIcon slot="start" icon={calculatorOutline} />
               Calculate
             </IonButton>
           </IonCol>
-          <IonCol>
+          <IonCol className="ion-text-right">
             <IonButton>
-              <IonIcon slot="start" name="refest-outline" />
+              <IonIcon slot="start" icon={refreshOutline} />
               Reset
             </IonButton>
+          </IonCol>
+        </IonRow>
+        <IonRow>
+          <IonCol>
+
           </IonCol>
         </IonRow>
       </IonGrid>
